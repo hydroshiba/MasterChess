@@ -35,7 +35,15 @@
 
         <!-- Load our custom JavaScript -->
         <script src="login.js"></script>
+
+        <!-- Error -->
+        <style>
+            .error-message {
+                color: #D85550
+            }
+        </style>
     </head>
+
     <body>
         <div class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-[#4c1d95] to-[#164e63] text-primary-foreground">
             <div class="bg-card p-8 rounded-lg shadow-md w-full max-w-md">
@@ -64,13 +72,11 @@
                     placeholder="••••••••"
                 />
                 </div>
+                <div id="generalError" class="text-sm font-medium error-message hidden"></div>
                 <div class="flex items-center justify-between">
-                <div class="text-sm">
-                    <a href="#" class="font-medium text-[#4c1d95] hover:text-[#164e63]"> Forgot your password? </a>
-                </div>
-                <div class="text-sm">
-                    <a href="#" onclick="redirectToRegister()" class="font-medium text-[#4c1d95] hover:text-[#164e63]"> Register </a>
-                </div>
+                    <div class="text-sm">
+                        <a href="#" onclick="redirectToRegister()" class="font-medium text-[#4c1d95] hover:text-[#164e63]"> Register </a>
+                    </div>
                 <div>
                 <button
                     type="submit"
