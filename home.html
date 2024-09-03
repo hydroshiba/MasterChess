@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- HEAD -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home - MasterChess</title>
+		<link rel="icon" href="resource/msc.png" type="image/png">
+
+        <!-- Load Tailwind CSS via CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: {
+                                DEFAULT: '#4c1d95',
+                                foreground: '#ffffff',
+                            },
+                            card: '#ffffff',
+                            input: '#f3f4f6',
+                            border: '#d1d5db',
+                            muted: {
+                                foreground: '#6b7280',
+                            },
+                        },
+                    },
+                },
+            }
+        </script>
+
+        <!-- Load Firebase via CDN -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+        <!-- Load our custom JavaScript -->
+        <script src="home.js"></script>
+
+        <style>
+            .error-message {
+                color: #D85550
+                /* font-size: 0.875rem; Optional: Adjust the font size */
+                /* margin-top: 0.5rem; Optional: Adjust the margin */
+            }
+        </style>
+    </head>
+
+	<!-- BODY -->
+	<body>
+		<img aria-hidden="true" alt="chess-queen" src="resource/msc.svg" class="h-12 w-12 bg-gradient-to-br from-[#ffffff] to-[#ffffff] rounded-full p-1 logo">
+
+		<div class="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#4c1d95] to-[#164e63]">
+		<div class="flex rounded-lg overflow-hidden shadow-lg bg-gradient-to-b from-[#4e95d9] to-[#ea4849]" style="width: 1000px; height: 600px;">
+			<div class="flex items-center justify-center" style="flex: 1;">
+					<div class="bg-white w-full h-full flex items-center justify-center">
+						<div class="rounded-lg flex items-center justify-center bg-gradient-to-br from-[#4c1d95] to-[#164e63]" style="width: 520px; height: 520px;">
+							<div id="chessBoard" class="items-center justify-center">
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="flex flex-col justify-center items-center p-10">
+				<button class="bg-white text-[#000000] text-2xl font-bold rounded-lg py-3 px-6 mb-4" onclick="window.location.href='play.html'">Play</button>
+				<button class="bg-white text-[#000000] text-2xl font-bold rounded-lg py-3 px-6 mb-4" onclick="window.location.href='analyze.html'">Analyze</button>
+			</div>
+		</div>
+		</div>
+
+		<style>
+		#chessBoard {
+			width: 500px;
+			height: 500px;
+			margin: 20px auto;
+			display: grid;
+			grid-template-columns: repeat(8, 1fr);
+			grid-template-rows: repeat(8, 1fr);
+		}
+		.square {
+			width: 62.5px;
+			height: 62.5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+		}
+		.logo {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+		}
+		</style>
+	</body>
+
+</html>
