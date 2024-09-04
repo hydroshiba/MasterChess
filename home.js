@@ -53,4 +53,30 @@ document.addEventListener('DOMContentLoaded', () => {
         // });
         board.appendChild(square);
     }
+
+	// Slider functionality
+    const slider = document.getElementById('slider');
+    const sliderValue = document.getElementById('sliderValue');
+	sliderValue.textContent = slider.value;
+
+    slider.addEventListener('input', () => {
+        sliderValue.textContent = slider.value;
+    });
+
+	// Button functionality
+    const playButton = document.getElementById('playButton');
+    const analyzeButton = document.getElementById('analyzeButton');
+
+    slider.addEventListener('input', () => {
+        sliderValue.textContent = slider.value;
+    });
+
+    playButton.addEventListener('click', () => {
+        const difficulty = slider.value;
+        window.location.href = `play.html?difficulty=${difficulty}`;
+    });
+
+    analyzeButton.addEventListener('click', () => {
+        window.location.href = `analyze.html`;
+    });
 });

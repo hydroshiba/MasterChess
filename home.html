@@ -49,23 +49,31 @@
 
 	<!-- BODY -->
 	<body>
-		<img aria-hidden="true" alt="chess-queen" src="resource/msc.svg" class="h-12 w-12 bg-gradient-to-br from-[#ffffff] to-[#ffffff] rounded-full p-1 logo">
-
 		<div class="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#4c1d95] to-[#164e63]">
-		<div class="flex rounded-lg overflow-hidden shadow-lg bg-gradient-to-b from-[#4e95d9] to-[#ea4849]" style="width: 1000px; height: 600px;">
-			<div class="flex items-center justify-center" style="flex: 1;">
-					<div class="bg-white w-full h-full flex items-center justify-center">
-						<div class="rounded-lg flex items-center justify-center bg-gradient-to-br from-[#4c1d95] to-[#164e63]" style="width: 520px; height: 520px;">
-							<div id="chessBoard" class="items-center justify-center">
+			<div class="flex items-center p-4">
+				<img aria-hidden="true" alt="chess-queen" src="resource/msc.svg" class="h-12 w-12 bg-gradient-to-br from-[#ffffff] to-[#ffffff] rounded-full p-1 logo">
+				<span class="ml-4 text-white text-2xl font-bold title">MasterChess</span>
+			</div>
+
+			<div class="flex rounded-lg overflow-hidden shadow-lg bg-gradient-to-b from-[#4e95d9] to-[#ea4849]" style="width: 1000px; height: 600px;">
+				<div class="flex items-center justify-center " style="flex: 1;">
+						<div class="bg-white w-full h-full flex items-center justify-center">
+							<div class="rounded-lg flex items-center justify-center bg-gradient-to-br from-[#4c1d95] to-[#164e63]" style="width: 520px; height: 520px;">
+								<div id="chessBoard" class="items-center justify-center">
+								</div>
 							</div>
 						</div>
+				</div>
+				<div class="flex flex-col justify-center items-center p-10">
+					<label for="slider" class="text-white text-xl font-bold mt-4">Select difficulty:</label>
+					<div class="flex items-center mt-2 space-after">
+						<input type="range" id="slider" name="slider" min="1" max="8" value="1" class="mr-2">
+						<span id="sliderValue" class="text-white text-xl font-bold">1</span>
 					</div>
+					<button id="playButton" class="bg-white text-[#000000] text-2xl font-bold rounded-lg py-3 px-6 mb-4">Play</button>
+					<button id="analyzeButton" class="bg-white text-[#000000] text-2xl font-bold rounded-lg py-3 px-6 mb-4">Analyze</button>
+				</div>
 			</div>
-			<div class="flex flex-col justify-center items-center p-10">
-				<button class="bg-white text-[#000000] text-2xl font-bold rounded-lg py-3 px-6 mb-4" onclick="window.location.href='play.html'">Play</button>
-				<button class="bg-white text-[#000000] text-2xl font-bold rounded-lg py-3 px-6 mb-4" onclick="window.location.href='analyze.html'">Analyze</button>
-			</div>
-		</div>
 		</div>
 
 		<style>
@@ -77,6 +85,7 @@
 			grid-template-columns: repeat(8, 1fr);
 			grid-template-rows: repeat(8, 1fr);
 		}
+
 		.square {
 			width: 62.5px;
 			height: 62.5px;
@@ -85,10 +94,21 @@
 			align-items: center;
 			cursor: pointer;
 		}
+
 		.logo {
 			position: absolute;
 			top: 20px;
 			left: 20px;
+		}
+
+		.title {
+			position: absolute;
+			top: 26px;
+			left: 70px;
+		}
+
+		.space-after {
+			margin-bottom: 50px; /* Adjust the value as needed */
 		}
 		</style>
 	</body>
