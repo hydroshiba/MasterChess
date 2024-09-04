@@ -112,6 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 
+	document.getElementById('loadButton').addEventListener('click', function() {
+		const selectedGameKey = gamesDropdown.value;
+		if (!selectedGameKey) {
+			alert('Please select a game to load.');
+			return
+		}
+		window.location.href = `analyze.html?gameKey=${encodeURIComponent(selectedGameKey)}`;
+	});
+
 	// Chessboard showing
 
 	const board = document.getElementById('chessBoard');
