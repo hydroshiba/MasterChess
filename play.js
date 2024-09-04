@@ -1,3 +1,19 @@
+// Firebase configuration
+const firebaseConfig = {
+	// Replace with your actual Firebase config
+	apiKey: "AIzaSyCGv7DEPIG7ieCyv8gVl3RSAf7E1dA4Kmg",
+	authDomain: "masterchess-8dfcd.firebaseapp.com",
+	databaseURL: "https://masterchess-8dfcd-default-rtdb.asia-southeast1.firebasedatabase.app/",
+	projectId: "masterchess-8dfcd",
+	storageBucket: "masterchess-8dfcd.appspot.com",
+	messagingSenderId: "601239027759",
+	appId: "1:601239027759:web:11975database1520f4b64e486da"
+};
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const auth = firebase.auth();
+
 const piecesvg = {
     'K': 'https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg',
     'Q': 'https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg',
@@ -137,18 +153,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 	function checkGameEnd() {
+		let gameResult = null;
+	
 		if (chess.in_checkmate()) {
 			alert('Checkmate! Game over.');
+			gameResult = 'checkmate';
 		} else if (chess.in_stalemate()) {
 			alert('Stalemate! Game over.');
-		} else if (chess.in_draw()) {
-			alert('Draw! Game over.');
+			gameResult = 'stalemate';
 		} else if (chess.in_threefold_repetition()) {
-			alert('Threefold repetition! Game over.');
+			alert('Threefold repetition! Game draw.');
+			gameResult = 'threefold repetition';
 		} else if (chess.insufficient_material()) {
-			alert('Insufficient material! Game over.');
+			alert('Insufficient material! Game draw.');
+			gameResult = 'insufficient material';
+		}
+	
+		if (gameResult) {
+			saveGameToDatabase(gameResult);
+			redirectToHome();
 		}
 	}
+
+	function redirectToHome() {
+		window.location.href = 'home.html';
+	}
+	
+	function saveGameToDatabase(result) {
+		const user = auth.currentUser;
+		if (!user) {
+			console.error('No user is signed in.');
+			return;
+		}
+	
+		const gameData = {
+			moves: chess.history(),
+			result: result,
+			fen: chess.fen(),
+			pgn: chess.pgn(),
+			timestamp: new Date().toISOString()
+		};
+	
+		const userGamesRef = database.ref('users/' + user.uid + '/games').push();
+		userGamesRef.set(gameData)
+			.then(() => {
+				console.log('Game saved successfully');
+			})
+			.catch((error) => {
+				console.error('Error saving game:', error);
+			});
+	}
+	
+	renderBoard();
 
 	renderBoard();
 });
