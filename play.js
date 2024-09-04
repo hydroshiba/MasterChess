@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				console.log('Game saved successfully');
 				setTimeout(() => {
 					window.location.href = 'home.html';
-				}, 2000);
+				}, 1000);
 			})
 			.catch((error) => {
 				console.error('Error saving game:', error);
