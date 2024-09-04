@@ -157,16 +157,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 		if (chess.in_checkmate()) {
 			alert('Checkmate! Game over.');
-			gameResult = 'checkmate';
+			gameResult = chess.in_checkmate() ? (chess.turn() === 'w' ? '0-1' : '1-0') : '1/2-1/2';
 		} else if (chess.in_stalemate()) {
 			alert('Stalemate! Game over.');
-			gameResult = 'stalemate';
+			gameResult = chess.in_checkmate() ? (chess.turn() === 'w' ? '0-1' : '1-0') : '1/2-1/2';
 		} else if (chess.in_threefold_repetition()) {
 			alert('Threefold repetition! Game draw.');
-			gameResult = 'threefold repetition';
+			gameResult = chess.in_checkmate() ? (chess.turn() === 'w' ? '0-1' : '1-0') : '1/2-1/2';
 		} else if (chess.insufficient_material()) {
 			alert('Insufficient material! Game draw.');
-			gameResult = 'insufficient material';
+			gameResult = chess.in_checkmate() ? (chess.turn() === 'w' ? '0-1' : '1-0') : '1/2-1/2';
 		}
 	
 		if (gameResult) {
@@ -183,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 		const gameData = {
 			moves: chess.history(),
+			type: 'Played',
 			result: result,
 			fen: chess.fen(),
 			pgn: chess.pgn(),

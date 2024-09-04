@@ -77,6 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     analyzeButton.addEventListener('click', () => {
-        window.location.href = `analyze.html`;
+        window.location.href = `load.html`;
     });
 });
