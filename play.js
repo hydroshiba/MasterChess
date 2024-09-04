@@ -171,12 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 		if (gameResult) {
 			saveGameToDatabase(gameResult);
-			redirectToHome();
 		}
-	}
-
-	function redirectToHome() {
-		window.location.href = 'home.html';
 	}
 	
 	function saveGameToDatabase(result) {
@@ -198,6 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		userGamesRef.set(gameData)
 			.then(() => {
 				console.log('Game saved successfully');
+				setTimeout(() => {
+					window.location.href = 'home.html';
+				}, 2000);
 			})
 			.catch((error) => {
 				console.error('Error saving game:', error);
