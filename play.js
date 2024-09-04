@@ -201,8 +201,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				console.error('Error saving game:', error);
 			});
 	}
-	
-	renderBoard();
 
 	renderBoard();
+
+	const giveUpButton = document.getElementById('giveupButton');
+	giveUpButton.addEventListener('click', () => {
+		window.location.href = 'home.html';
+	});
 });
